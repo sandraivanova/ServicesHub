@@ -1,9 +1,9 @@
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {IUser} from "@dnevnica/shared";
-import {Observable} from "rxjs";
 import { IGivingService,IReview } from '@dnevnica/shared';
 import {IRequestService} from "@dnevnica/shared/models/request_service";
+
 @Injectable({
   providedIn: "root",
 })
@@ -13,31 +13,31 @@ export class ApiService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<any>('http://localhost:3000/api/auth/login', {email, password})
+    return this.http.post<any>('/api/auth/login', {email, password})
   }
 
   logout(refreshToken: string) {
-    return this.http.post('http://localhost:3000/api/auth/logout', { refreshToken });
+    return this.http.post('/api/auth/logout', { refreshToken });
   }
 
   getCurrentUser() {
-    return this.http.get<IUser>('http://localhost:3000/api/users/current-user');
+    return this.http.get<IUser>('/api/users/current-user');
   }
 
   refreshToken(refreshToken: string) {
-    return this.http.post<any>('http://localhost:3000/api/auth/token', { refreshToken });
+    return this.http.post<any>('/api/auth/token', { refreshToken });
   }
 
   forgotPassword(email: string) {
-    return this.http.post<any>('http://localhost:3000/api/auth/forgot-password', { email });
+    return this.http.post<any>('/api/auth/forgot-password', { email });
   }
 
   resetPassword(token: string, newPassword: string) {
-    return this.http.post<any>('http://localhost:3000/api/auth/reset-password', { token, newPassword });
+    return this.http.post<any>('/api/auth/reset-password', { token, newPassword });
   }
 
   updateCurrentUser(id: number, userData: Partial<IUser>) {
-    return this.http.put<IUser>(`http://localhost:3000/api/users/${id}`, userData);
+    return this.http.put<IUser>(`/api/users/${id}`, userData);
   }
 
   getAllGivingServices(filters?: {
@@ -51,59 +51,59 @@ export class ApiService {
     if (filters?.category) params = params.set('category', filters.category);
     if (filters?.location) params = params.set('location', filters.location);
 
-    return this.http.get<IGivingService[]>('http://localhost:3000/api/giving-services', {params});
+    return this.http.get<IGivingService[]>('/api/giving-services', {params});
   }
 
   updateService(id: number | string, serviceData: IGivingService) {
-    return this.http.put<IGivingService>(`http://localhost:3000/api/giving-services/${id}`, serviceData);
+    return this.http.put<IGivingService>(`/api/giving-services/${id}`, serviceData);
   }
 
   deleteService(id: number | string) {
-    return this.http.delete(`http://localhost:3000/api/giving-services/${id}`);
+    return this.http.delete(`/api/giving-services/${id}`);
   }
 
   createService(serviceData: IGivingService) {
-    return this.http.post<IGivingService>('http://localhost:3000/api/giving-services', serviceData);
+    return this.http.post<IGivingService>('/api/giving-services', serviceData);
   }
 
   findOne(id: number | string) {
-    return this.http.get<IGivingService>(`http://localhost:3000/api/giving-services/${id}`);
+    return this.http.get<IGivingService>(`/api/giving-services/${id}`);
   }
 
   getReviewsForService(serviceId: number) {
-    return this.http.get<IReview[]>(`http://localhost:3000/api/review/${serviceId}`);
+    return this.http.get<IReview[]>(`/api/review/${serviceId}`);
   }
 
   createReview(reviewData: IReview) {
-    return this.http.post<IReview>('http://localhost:3000/api/review/', reviewData);
+    return this.http.post<IReview>('/api/review/', reviewData);
   }
 
   deleteReview(id: number) {
-    return this.http.delete(`http://localhost:3000/api/review/${id}`);
+    return this.http.delete(`/api/review/${id}`);
   }
 
   getMyReview(serviceId: number) {
-    return this.http.get<IReview>(`http://localhost:3000/api/review/my-review/${serviceId}`);
+    return this.http.get<IReview>(`/api/review/my-review/${serviceId}`);
   }
 
   updateReview(id: number, reviewData: IReview) {
-    return this.http.put<IReview>(`http://localhost:3000/api/review/${id}`, reviewData);
+    return this.http.put<IReview>(`/api/review/${id}`, reviewData);
   }
 
   updateServiceRequest(id: number | string, serviceData: IRequestService) {
-    return this.http.put<IRequestService>(`http://localhost:3000/api/request-service/${id}`, serviceData);
+    return this.http.put<IRequestService>(`/api/request-service/${id}`, serviceData);
   }
 
   createServiceRequest(serviceData: IRequestService) {
-    return this.http.post<IRequestService>('http://localhost:3000/api/request-service', serviceData);
+    return this.http.post<IRequestService>('/api/request-service', serviceData);
   }
 
   deleteServiceRequest(id: number | string) {
-    return this.http.delete(`http://localhost:3000/api/request-service/${id}`);
+    return this.http.delete(`/api/request-service/${id}`);
   }
 
   findOneServiceRequest(id: number | string) {
-    return this.http.get<IRequestService>(`http://localhost:3000/api/request-service/${id}`);
+    return this.http.get<IRequestService>(`/api/request-service/${id}`);
   }
 
   getAllServiceRequests(filters?: {
@@ -117,6 +117,6 @@ export class ApiService {
     if (filters?.category) params = params.set('category', filters.category);
     if (filters?.location) params = params.set('location', filters.location);
 
-    return this.http.get<IRequestService[]>('http://localhost:3000/api/request-service', {params});
+    return this.http.get<IRequestService[]>('/api/request-service', {params});
   }
 }

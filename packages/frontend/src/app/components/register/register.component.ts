@@ -32,7 +32,7 @@ export class RegisterComponent {
 
     const formData = this.registerForm.value;
 
-    this.http.post<any>('http://localhost:3000/api/auth/sign-up', formData)
+    this.http.post<any>('/api/auth/sign-up', formData)
       .subscribe({
         next: (response) => {
           this.router.navigate(['/login']);

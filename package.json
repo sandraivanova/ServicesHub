@@ -6,5 +6,8 @@
   ],
   "scripts": {
     "postinstall": "npm run build --workspace=packages/models"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0"
   }
 }
