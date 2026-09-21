@@ -99,7 +99,7 @@ docker build -f docker/frontend.Dockerfile -t servicehub-frontend .
    - Linux/macOS: `/etc/hosts`
    - Windows: `C:\Windows\System32\drivers\etc\hosts`
 
-4. **Open** <http://servicehub.local>.
+4. **Open** <http://servicehub.local:8081>.
 
 ### Routing
 
